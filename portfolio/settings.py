@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-g7qxrr5^1j$793rm1+$*o!mbzz#b*5(2fjkxl1j#s%szz!ew*7
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1','sonomou-portfolio.herokuapp.com/','https://sonomou-portfolio.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1','sekou-portfolio.herokuapp.com/','https://sekou-portfolio.herokuapp.com/']
 
 
 # Application definition
@@ -80,14 +80,14 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=True) }
+DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=True) }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
