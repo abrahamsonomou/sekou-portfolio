@@ -1,0 +1,27 @@
+{% load static %}
+
+<!-- ======= Services Section ======= -->
+    <section id="services" class="services ">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Services</h2>
+          </div>
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
+                {% for service in services %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{service.image.url}}" alt="{{service.titre}}" />
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h6 class="fw-bolder">{{service.titre}}</h6>
+                                <p>{{service.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+      </section><!-- End Services Section -->

@@ -1,0 +1,62 @@
+{% extends 'includes/_base.html' %}
+{% block title %} Detail projet{% endblock %}
+
+{% block content %}
+{% include "includes/_breadcrumbs.html" %}
+
+   <!-- ======= Portfolio Details Section ======= -->
+   <section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+
+      <div class="row gy-4">
+
+        <div class="col-lg-8">
+          <div class="portfolio-details-slider swiper">
+            <div class="swiper-wrapper align-items-center">
+
+              <div class="swiper-slide">
+                <img src="{{portfolio.image.url}}" alt="">
+              </div>
+
+              <div class="swiper-slide">
+                <img src="{{portfolio.image1.url}}" alt="">
+              </div>
+
+              <div class="swiper-slide">
+                <img src="{{portfolio.image2.url}}" alt="">
+              </div>
+
+              <div class="swiper-slide">
+                <img src="{{portfolio.image3.url}}" alt="">
+              </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="portfolio-info">
+            <h3>Informations du projet</h3>
+            <ul>
+              <li><strong>Categorie</strong>:{{portfolio.categorie}}</li>
+              <li><strong>Client</strong>: {{portfolio.client}}</li>
+              <li><strong>Date</strong>: {{portfolio.date_projet}}</li>
+              <li><strong>URL</strong>: <a href="#">{{portfolio.url}}</a></li>
+            </ul>
+          </div>
+          <div class="portfolio-description">
+            <h2 class="text-center">{{portfolio.titre}}</h2>
+            <p>
+                {{portfolio.description}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Portfolio Details Section -->
+
+
+{% endblock content %}
