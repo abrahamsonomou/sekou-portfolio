@@ -19,8 +19,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('gueatey/', admin.site.urls),
+    path('gueatey-admin/', admin.site.urls),
     path('',include('app_web.urls')),
-    path('auth/',include('app_auth.urls')),
+    # path('auth/',include('app_auth.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
