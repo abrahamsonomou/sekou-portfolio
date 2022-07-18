@@ -13,6 +13,12 @@ from django.conf import settings
 
 # Create your views here.
 def index(request):
+    
+    form=ContactForm(request.POST)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+    
     competences=Competences.objects.all()
     services=Service.objects.all()
     categories=Categorie.objects.all()
@@ -33,6 +39,7 @@ def index(request):
             'services':services,
             'competences':competences,
             'categories':categories,
+            'form':form,
             }
     return render(request,'pages/index.html',context)
 
