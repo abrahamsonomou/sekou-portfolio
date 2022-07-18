@@ -6,8 +6,8 @@ from .models import Contact
 class ContactForm(forms.ModelForm):
     class Meta:
         model=Contact
-        fields=['nom','email','message','sujet']
-        labels={'nom':'Full Name','email':'Email Address','message':'Message','sujet':'Sujet'}
+        fields=['nom','email','sujet','message']
+        labels={'nom':'Full Name','email':'Email Address','sujet':'Sujet','message':'Message'}
         widgets={
             'nom':forms.TextInput(attrs={'class':'form-control','placeholder':"Nom"}),
             'email':forms.TextInput(attrs={'class':'form-control','placeholder':"Email"}),
