@@ -9,10 +9,10 @@ class ContactForm(forms.ModelForm):
         fields=['nom','email','sujet','message']
         labels={'nom':'Full Name','email':'Email Address','sujet':'Sujet','message':'Message'}
         widgets={
-            'nom':forms.TextInput(attrs={'class':'form-control','placeholder':"Nom"}),
-            'email':forms.TextInput(attrs={'class':'form-control','placeholder':"Email"}),
-            'sujet':forms.TextInput(attrs={'class':'form-control','placeholder':"Sujet"}),
-            'message':forms.Textarea(attrs={'class':'form-control','cols':30,'rows':10,'placeholder':"Message"})
+            'nom':forms.TextInput(attrs={'class':'form-control','placeholder':"Nom",'required':'required',}),
+            'email':forms.TextInput(attrs={'class':'form-control','placeholder':"Email",'required':'required',}),
+            'sujet':forms.TextInput(attrs={'class':'form-control','placeholder':"Sujet",'required':'required',}),
+            'message':forms.Textarea(attrs={'class':'form-control','cols':30,'rows':10,'placeholder':"Message",'required':'required',})
         }
         
         

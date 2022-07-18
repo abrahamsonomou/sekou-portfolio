@@ -18,7 +18,7 @@ class CategorieAdmin(admin.ModelAdmin):
     
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display=('nom','email','sujet','created',)
+    list_display=('nom','email','sujet','message','created',)
     list_filter=('nom','email',)
     ordering=('nom',)
     
