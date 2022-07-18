@@ -11,7 +11,7 @@ class ContactForm(forms.ModelForm):
         widgets={
             'nom':forms.TextInput(attrs={'class':'form-control','placeholder':"Nom"}),
             'email':forms.TextInput(attrs={'class':'form-control','placeholder':"Email"}),
-            'sujet':forms.TextInput(attrs={'class':'rounded form-control mr-2 py-3','placeholder':"Sujet"}),
+            'sujet':forms.TextInput(attrs={'class':'form-control','placeholder':"Sujet"}),
             'message':forms.Textarea(attrs={'class':'form-control','cols':30,'rows':10,'placeholder':"Message"})
         }
         

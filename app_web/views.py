@@ -12,29 +12,29 @@ from django.core import mail
 from django.conf import settings
 
 # Create your views here.
-def index(request):
-    competences=Competences.objects.all()
-    services=Service.objects.all()
-    categories=Categorie.objects.all()
-    object_list=Portfolio.objects.all()
+# def index(request):
+#     competences=Competences.objects.all()
+#     services=Service.objects.all()
+#     categories=Categorie.objects.all()
+#     object_list=Portfolio.objects.all()
 
-    paginator=Paginator(object_list,6)
-    page=request.GET.get('page')
-    try:
-        portfolios=paginator.page(page)
-    except PageNotAnInteger:
-        portfolios=paginator.page(1)
-    except EmptyPage:
-        portfolios=paginator.page(paginator.num_pages)
+#     paginator=Paginator(object_list,6)
+#     page=request.GET.get('page')
+#     try:
+#         portfolios=paginator.page(page)
+#     except PageNotAnInteger:
+#         portfolios=paginator.page(1)
+#     except EmptyPage:
+#         portfolios=paginator.page(paginator.num_pages)
     
-    context={
-            'portfolios':portfolios,
-            'page':page,
-            'services':services,
-            'competences':competences,
-            'categories':categories,
-            }
-    return render(request,'pages/index.html',context)
+#     context={
+#             'portfolios':portfolios,
+#             'page':page,
+#             'services':services,
+#             'competences':competences,
+#             'categories':categories,
+#             }
+#     return render(request,'pages/index.html',context)
 
 def detail_projet(request,slug:str):
     try:
@@ -51,6 +51,30 @@ class Contact(CreateView):
     form_class=ContactForm
     template_name='pages/index.html'
     success_url='index'
+    
+    def dispatch(self, request):
+        competences=Competences.objects.all()
+        services=Service.objects.all()
+        categories=Categorie.objects.all()
+        object_list=Portfolio.objects.all()
+
+        paginator=Paginator(object_list,6)
+        page=request.GET.get('page')
+        try:
+            portfolios=paginator.page(page)
+        except PageNotAnInteger:
+            portfolios=paginator.page(1)
+        except EmptyPage:
+            portfolios=paginator.page(paginator.num_pages)
+        
+        context={
+                'portfolios':portfolios,
+                'page':page,
+                'services':services,
+                'competences':competences,
+                'categories':categories,
+                }
+        return render(request,'pages/index.html',context)
     
 # def contact(request):
 #     form=ContactForm(request.POST)
