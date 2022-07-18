@@ -46,44 +46,44 @@ def detail_projet(request,slug:str):
         raise("Ce projet n'exist pas")
     return render(request,'pages/detail_portfolio.html',context)
 
-# class Contact(CreateView):
-#     model=Contact
-#     form_class=ContactForm
-#     template_name='pages/contact_success.html'
-#     success_url='/'
+class Contact(CreateView):
+    model=Contact
+    form_class=ContactForm
+    template_name='pages/index.html'
+    success_url='index'
     
-def contact(request):
-    form=ContactForm(request.POST)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        if Contact.objects.filter(email=instance.email).exists():
-            messages.warning(request,
-            "Désolé! Cet email existe dans la base de données",
-            "alert alert-danger alert-dismissible")
-        else:
-            instance.save()
-            messages.success(request,
-            "Nous avons réçu votre message !",
-            "alert alert-success alert-dismissible")
-            connection = mail.get_connection()
-            nom=form.cleaned_data['nom']
-            email=form.cleaned_data['email']
-            sujet=form.cleaned_data['sujet']
-            message=form.cleaned_data['message']
-            email1 = mail.EmailMessage(
-            sujet,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            [email],
-            connection=connection,
-            )
+# def contact(request):
+#     form=ContactForm(request.POST)
+#     if form.is_valid():
+#         instance=form.save(commit=False)
+#         if Contact.objects.filter(email=instance.email).exists():
+#             messages.warning(request,
+#             "Désolé! Cet email existe dans la base de données",
+#             "alert alert-danger alert-dismissible")
+#         else:
+#             instance.save()
+#             messages.success(request,
+#             "Nous avons réçu votre message !",
+#             "alert alert-success alert-dismissible")
+#             connection = mail.get_connection()
+#             nom=form.cleaned_data['nom']
+#             email=form.cleaned_data['email']
+#             sujet=form.cleaned_data['sujet']
+#             message=form.cleaned_data['message']
+#             email1 = mail.EmailMessage(
+#             sujet,
+#             message,
+#             settings.DEFAULT_FROM_EMAIL,
+#             [email],
+#             connection=connection,
+#             )
             
-            email1.send() 
+#             email1.send() 
             
-            connection.close()
+#             connection.close()
             
-    context={
-        'form':form,
-        }
-    return render(request,"pages/index.html",context)
+#     context={
+#         'form':form,
+#         }
+#     return render(request,"pages/index.html",context)
     # return render(request,"pages/newletter.html",context)

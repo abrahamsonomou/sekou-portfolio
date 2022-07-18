@@ -37,34 +37,33 @@
           <div class="col-lg-7 d-flex align-items-stretch">
             <div class="info">
                <h4 class="text-center mb-3">Contactez-nous !</h4>
-               {% if messages %}
+               {% comment %} {% if messages %}
                {% for message  in messages %}
                <div {% if message.tags %} class="{{message.tags}}" {% endif %}>
                    {{message}}
                </div>
                {% endfor %}
-               {% endif %} 
+               {% endif %}  {% endcomment %}
                
-            <form action="/contact" method="post"  class="php-email-form">
+            <form action="" method="post"  class="php-email-form">
               {% csrf_token %}           
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label for="nom">Votre nom</label>
-                    <input type="text" name="nom" class="form-control" id="name" required>
-                    
+                    {{form.nom}}
                   </div>
                   <div class="form-group col-md-6">
                     <label for="name">Votre Email</label>
-                    <input type="email" class="form-control" name="email" id="email" required>
+                    {{form.email}}
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="subject">Subject</label>
-                  <input type="text" class="form-control" name="sujet" id="subject" required>
+                  {{form.sujet}}
                 </div>
                 <div class="form-group">
                   <label for="name">Message</label>
-                  <textarea class="form-control" name="contenu" rows="10" required></textarea>
+                  {{form.message}}
                 </div>
                 <div class="text-center"><button type="submit">Send Message</button></div>
               </form>
