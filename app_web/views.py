@@ -19,7 +19,7 @@ def index(request):
         instance=form.save(commit=False)
         instance.save()
     
-    competences=Competences.objects.all()
+    competences=Competences.objects.order_by('-updated')
     services=Service.objects.all()
     categories=Categorie.objects.all()
     object_list=Portfolio.objects.all()
@@ -59,7 +59,19 @@ class Contact(CreateView):
     template_name='pages/index.html'
     success_url='index'
     
-    
+# gestion des erreurs
+def handler403(request,exception):
+    return render(request,'pages/403.html')
+
+def handler404(request, exception):
+    return render(request,'pages/404.html',status=404)
+
+def handler500(request):
+    return render(request,'pages/500.html')
+
+def handler503(request,exception):
+    return render(request,'pages/503.html')  
+
 # def contact(request):
 #     form=ContactForm(request.POST)
 #     if form.is_valid():
@@ -94,4 +106,4 @@ class Contact(CreateView):
 #         'form':form,
 #         }
 #     return render(request,"pages/index.html",context)
-    # return render(request,"pages/newletter.html",context)
+#     return render(request,"pages/newletter.html",context)

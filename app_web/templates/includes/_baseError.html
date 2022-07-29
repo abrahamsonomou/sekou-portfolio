@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>
+  {% block title %}{% endblock title %}
+    </title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/app.min.css' %} ">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css' %}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+  <link rel='shortcut icon' type='image/x-icon' href="{% static 'assets/img/favicon.ico' %}" />
+</head>
+
+<body>
+  <div class="loader"></div>
+  <div id="app">
+    
+    {% block content %}
+        
+    {% endblock content %}
+
+  </div>
+  {% comment %} <!-- General JS Scripts --> {% endcomment %}
+  <script src="{% static 'assets/js/app.min.js' %} "></script>
+  {% comment %} <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <!-- Template JS File --> {% endcomment %}
+  <script src="{% static 'assets/js/scripts.js' %}"></script>
+  {% comment %} <!-- Custom JS File --> {% endcomment %}
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+</body>
+
+</html>

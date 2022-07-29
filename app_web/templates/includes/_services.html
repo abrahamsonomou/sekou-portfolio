@@ -13,7 +13,11 @@
                 {% for service in services %}
                 <div class="col mb-5">
                     <div class="card h-100">
+                        
+                        {% if service.image %}
                         <img class="card-img-top" src="{{service.image.url}}" alt="{{service.titre}}" />
+                        {% endif %}
+                            
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h6 class="fw-bolder">{{service.titre}}</h6>

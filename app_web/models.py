@@ -20,6 +20,7 @@ class Contact(models.Model):
 class Competences(models.Model):
     titre=models.CharField(verbose_name='Titre',max_length=200)
     pourcentage=models.IntegerField(null=True,blank=True,verbose_name="Pourcentage")
+    updated=models.DateField(auto_now=True,blank=True,null=True,verbose_name='Create date')
 
     class Meta:
         verbose_name="Competences"

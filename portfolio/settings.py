@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-g7qxrr5^1j$793rm1+$*o!mbzz#b*5(2fjkxl1j#s%szz!ew*7
 # SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['127.0.0.1','sekou-portfolio.herokuapp.com','https://sekou-portfolio.herokuapp.com/',]
@@ -130,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 STATIC_URL = 'static/'
 
