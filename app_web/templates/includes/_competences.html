@@ -10,9 +10,26 @@
             {% for competence in competences %}
             <div class="col-lg-6" data-aos="fade-up">
               <div class="progress">
-                <span class="skill">{{competence.titre}}<i class="val">{{competence.pourcentage}} %</i></span>
+                <span class="skill">
+                  {{competence.titre}}<i class="val">
+                  {{competence.pourcentage}} %</i>
+                </span>
                 <div class="progress-bar-wrap">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="{{competence.pourcentage}}" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar
+                  {% if competence.pourcentage < 50  %}
+                  bg-danger
+                  {% elif competence.pourcentage < 60  %}
+                              bg-warning
+                  {% elif competence.pourcentage < 70  %}
+                              bg-dark
+                  {% elif competence.pourcentage < 80  %}
+                              bg-info
+                  {% else  %}
+                              bg-primary
+                  {% endif %}
+                  " role="progressbar" aria-valuenow="{{competence.pourcentage}}" 
+                  aria-valuemin="0" aria-valuemax="100">
+                </div>
                 </div>
               </div>
             </div>

@@ -1,50 +1,51 @@
 {% load static %}
-   
-   <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-        <div class="container">
-  
-          <div class="section-title">
-            <h2>A propos de moi</h2>
-            <p><strong>Sekou SONOMOU</strong>, etudiant en Master 2 en Cyber sécurité à Ipnet Institute of Technology à Lomé.</p>
-          </div>
-          
-          <div class="row">
-            <div class="col-lg-4" data-aos="fade-right">
-              <img src="{% static 'assets-portfolio/img/profile-img.jpeg' %}" class="img-fluid" alt="">
-            </div>
-            <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-              <h3>Ingénieur sécurité/Pentesteur &amp; Developpeur web.</h3>
-              <p class="fst-italic">Pourquoi j'ai associé ses deux metiers, voila la raison: </p>
-              <blockquote>
-                La profession de Pentester exige une très bonne compréhension de techniques de hacking, du développement logiciel et des systèmes informatiques. De solides connaissances en réseau et en sécurité informatique (système de codage, cryptographie, audit de sécurité…) sont également nécessaires.
-                <a href="https://www.jedha.co/formation-cybersecurite/metier-pentester" target="_blank">source</a>
-              </blockquote>
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Naissance:</strong> <span>15 Avril</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Site web:</strong> <span><a href="https://sonomou-blog.herokuapp.com/" target="_blank" >www.sonomou.tech</a></span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Telephone:</strong> <span>+228 70 02 69 94</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Pays:</strong> <span>Lome, TOGO</span></li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>25</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Grade:</strong> <span>Master</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href="mailto:contact@sonomou.tech">contact@sonomou.tech</a></span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Fonction:</strong> <span>Disponible</span></li>
-                  </ul>
-                </div>
-              </div>
-              <p>
-                Developpeur web, passionné par les nouvelles technologies.
-                Je suis un jeune developpeur detenteur d'une Licence en Informatique, je prépare un master en Cyber Securité.
-              </p>
-            </div>
-          </div>
-  
+{% for info in infos %}
+
+  <section id="about" class="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>A propos de moi</h2>
+</p>
+  </div>
+      
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-right">
+          {% if info.photo %}
+          <img class="w-100 img-fluid mb-4" src="{{info.photo.url}}" alt="Image">
+          {% else %}
+          <img class="w-100 img-fluid mb-4" src="{% static 'assets-portfolio/img/profile-img.jpeg' %}" class="img-fluid" alt="">
+          {% endif %}
         </div>
-      </section><!-- End About Section -->
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>{{info.nom}}</h3>
+          <blockquote>
+            {{info.apropos}}
+          </blockquote>
+          <div class="row">
+            <div class="col-lg-6">
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <strong>Naissance:</strong> <span>{{info.naissance}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Site web:</strong> <span><a href="{{info.site}}" target="_blank" >{{info.site}}</a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Telephone:</strong> <span>{{info.phone}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Addresse:</strong> <span>{{info.address}}</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <strong>Grade:</strong> <span>{{info.grade}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Année d'expérience:</strong> <span>{{info.experience}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href="mailto:{{info.email}}">{{info.email}}</a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Fonction:</strong> <span>{{info.disponibilite}}</span></li>
+              </ul>
+            </div>
+            <p>Voici mon CV qui resume mon parcours <a href="{% url 'cv' %}" target="_blank" class="btn btn-secondary">Cliquez-ici!</span></a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
   
+
+{% endfor %}

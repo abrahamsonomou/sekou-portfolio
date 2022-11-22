@@ -1,45 +1,51 @@
 {% load static %}
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-  
-          <div class="section-title">
-            <h2>Projets</h2>
-          </div>
-  
-          {% comment %} <div class="row" data-aos="fade-up">
-            <div class="col-lg-12 d-flex justify-content-center">
-              <ul id="portfolio-flters">
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
 
-                <li data-filter="*" class="filter-active">All</li>
-                {% for categorie in categories %}
-                <a href="{% url 'index' %}" title="More Details"><li>
-                    {{categorie.nom_categorie}}</li></a>
-                {% endfor %}
-              </ul>
-            </div>
-          </div> {% endcomment %}
-  
-          <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-  
-        {% for portfolio in portfolios %}
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app mb-2">
-              <div class="portfolio-wrap">
-                
-                {% if portfolio.image %}
-                <img src="{{portfolio.image.url}}" class="img-fluid" alt="">
-                {% endif %}
-                  
-                <div class="portfolio-links">
-                  {% if portfolio.image %}
-                  <a href="{{portfolio.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{portfolio.titre}}"><i class="bx bx-plus"></i></a>
-                  {% endif %}
-                  <a href="{% url 'detail_projet' portfolio.slug %}" title="{{portfolio.titre}}"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-      {% endfor %}
+        <div class="section-title">
+          <h2>Portfolio</h2>
+          {% for info in infos %}
+          {% if portfolio.portfolio %}
+          <p>{{info.portfolio}}</p>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">Securité</li>
+              <li data-filter=".filter-card">Desktop</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
           </div>
         </div>
-      </section><!-- End Portfolio Section -->
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+          {% for portfolio in portfolios %}
+          <div class="col-lg-4 col-md-6 portfolio-item {{portfolio.categorie}}">
+            <div class="portfolio-wrap">
+              {% if portfolio.image %}
+              <img class="img-fluid" src="{{portfolio.image.url}}" alt="">
+              {% else %}
+              <img class="img-fluid" src="{% static 'assets-portfolio/img/img-5.jpg'%}" alt="">
+              {% endif %}
+              <div class="portfolio-links">
+                <a href="{{portfolio.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                {% if portfolio.url %}
+                <a href="{{portfolio.url}}" target="_blank" title="More Details"><i class="bx bx-link"></i></a>
+                {% else %}
+                <a href="{{portfolio.lien}}" target="_blank" title="More Details"><i class="bx bx-link"></i></a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+

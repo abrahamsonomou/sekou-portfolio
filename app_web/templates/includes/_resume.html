@@ -11,130 +11,64 @@
             <div class="col-lg-6" data-aos="fade-up">
               <h3 class="resume-title">Resumé</h3>
               <div class="resume-item pb-0">
-                <h4>Sekou SONOMOU</h4>
-                <p><em>Masterant en Cyber sécurité à Ipnet Institute of Technology à Lomé.
-                  <ul>
-                  <li>Administrateur Systèmes/Administrateurs Réseaux</li>
-                  {% comment %} <li>Developpeur PHP/Laravel</li> {% endcomment %}
-                  <li>Developpeur Python/Django</li>
-                   </em></p>
-                <ul>
-                  <li>Cacaveli,Lome, TOGO</li>
-                  <li>(+228) 70 02 69 94</li>
-                  <li>contact@sonomou.tech</li>
-                </ul>
+                {% for info in infos %}
+                <p>{{info.resume.html|safe}}</p>
+                {% endfor %}
               </div>
   
               <h3 class="resume-title">Education</h3>
+              {% for education in educations %}
               <div class="resume-item">
-                <h4>Master Professionnel en Cyber sécurité</h4>
-                <h5>2020 - présent</h5>
-                <p><em>IPNET INSTITUTE OF TECHNOLOGY, Lome</em></p>
-                <p>En cour</p>
+                <h4>{{education.formation|upper}}</h4>
+                <h5>{{education.periode}}</h5>
+                <p><em>{{education.ecole}}</em></p>
+                <p>{{education.description}}</p>
               </div>
-              <div class="resume-item">
-                <h4>Licence fondamentale en Informatique</h4>
-                <h5>2017 - 2020</h5>
-                <p><em>Universite de Labé, Guinée</em></p>
-                <p>Diplome de Licence en Informatique </p>
-              </div>
+              {% endfor %}
   
               <h3 class="resume-title">Compétences</h3>
               <div class="resume-item">
                 <ul>
-                  <li>Integration continue/Deployement des applications web</li>
-                  <li>Configuration et administration des systèmes Windows serveur</li>
-                  <li>Configuration et administration des systèmes Linux.</li>
-                  <li>Analyse des bases de données : Merise et UML</li>
-                  <li>Gestion de projet avec : Trello, Google Drive, Git,slack </li>
-                  <li>Conception des sites avec les frameworks: Django, Laravel</li>
+                  {% for competence in competencesuplementaires %}
+                  <li>{{competence.titre}}</li>
+                  {% endfor %}
                 </ul>
               </div>
   
                           
               <h3 class="resume-title">Stages</h3>
+              {% for stage in stages %}
               <div class="resume-item">
-                <h4>Stage pratique en developpement web</h4>
-                <h5> nov 2020 – présent</h5>
-                <p><em><a href="https://e-media.io/" target="_blank">e-media, Lome</a></em></p>
+                <h4>{{stage.titre|upper}}</h4>
+                <h5> {{stage.periode}}</h5>
+                <p><em><a href="{% if stage.site %}{{stage.site}}{% else %}#!{% endif %}" {% if stage.site %}target="_blank" {% endif %}>{{stage.entreprise}}</a></em></p>
                 <ul>
                 </ul>
               </div>
-              <div class="resume-item">
-                <h4>Stage pratique en developpement web</h4>
-                <h5> mai 2020 – aout 2020</h5>
-                <p><em><a href="https://www.bakeli.tech/" target="_blank">Bakeli of school, Labé</a></em></p>
-                <ul>
-                </ul>
-              </div>
+              {% endfor %}
               
+              <h3 class="resume-title">Formations attestée</h3>
+              {% for formation in formations %}
+              <div class="resume-item">
+                <h4>{{formation.titre}} </h4>
+                <h5>{{formation.periode}}</h5>
+                <p><em><a href="{% if formation.site %}{{formation.site}} {% else %}#!{% endif %}" {% if formation.site %}target="_blank"{% endif %}  >{{formation.entreprise}}</a></em></p>
+                <p>{{formation.description.html|safe}}</p>
+                <ul>
+                </ul>
+              </div>
+              {% endfor %}
             </div>
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="resume-title">Expérience professionnelle</h3>
-  
+              <h3 class="resume-title">Expériences professionnelles</h3>
+              {% for experience in experiences %}
               <div class="resume-item">
-                <h4>Administrateur reseau system</h4>
-                <h5>av 2022 – mai 2022</h5>
-                <p><em><a href="https://e-media.io/" target="_blank">E-MEDIA, LOME</a></em></p>
-                <ul>
-                  <li>Deployement de l'application <a href="https://togotourismestat.com/" target="_blank">togotourismestat</a></li>
-                </ul>
+                <h4>{{experience.post}}</h4>
+                <h5>{{experience.periode}}</h5>
+                <p><em><a href="{% if experience.lien %}{{experience.lien}}{% else %}#!{% endif %}" {% if experience.lien %}target="_blank"{% endif %}>{{experience.entreprise}}</a></em></p>
+                <p>{{experience.description.html|safe}}</p>
               </div>
-              
-              <div class="resume-item">
-                <h4>Administrateur reseau system</h4>
-                <h5>jan 2022 – mars 2022</h5>
-                <p><em><a href="https://e-media.io/" target="_blank">E-MEDIA, LOME</a></em></p>
-                <ul>
-                  <li>Deployement de l'application <a href="https://cfindertogo.org/" target="_blank">cfindertogo</a></li>
-                </ul>
-              </div>
-
-              <div class="resume-item">
-                <h4>Administrateur reseau system</h4>
-                <h5>av 2021 – sep 2021</h5>
-                <p><em>IPNET INSTITUTE OF TECHNOLOGY</em></p>
-                <ul>
-                  <li>Gestion de l’authentification des utilisaters</li>
-                  <li>Partage de ressources dans un reseau au moyen de Microsoft
-                    Active Directory</li>
-                  <li>Mises a jour centralisee au moyen de WSUS</li>
-                </ul>
-              </div>
-  
-              <div class="resume-item">
-                <h4>Administrateur reseau system</h4>
-                <h5> oct 2021 – fev 2022</h5>
-                <p><em>IPNET INSTITUTE OF TECHNOLOGY</em></p>
-                <ul>
-                  <li>Administration du nom de domaine</li>
-                  <li>Hebergement des sites web</li>
-                  <li>Hebergement de la messagerie</li>
-                </ul>
-              </div>
-  
-  
-  
-              <h3 class="resume-title">Formations attestée</h3>
-              <div class="resume-item">
-                <h4>Formation sur la securité du numérique</h4>
-                <h5>  01-12 Mais 2022</h5>
-                <p><em><a href="https://www.ssi.gouv.fr/administration/formations/" target="_blank">MOOC de l’ANSSI </a></em></p>
-                <ul>
-                  <li>Module 1 Panorama de la SSI</li>
-                  <li>Module 2 Sécurité de l’authentification</li>
-                  <li>Module 3  Sécurité sur Internet</li>
-                  <li>Module 4  Sécurité du poste de travail et nomadisme</li>
-                </ul>
-              </div>
-              <div class="resume-item">
-                <h4>Ecole de la gouvernqance de l'internet </h4>
-                <h5> 10 - 13 octobre 2021</h5>
-                <p><em>Politique et Reglementaire pour l'Afrique numerique (PRIDA)</em></p>
-                <ul>
-                </ul>
-              </div>
-  
+              {% endfor %}
             </div>
           </div>
   

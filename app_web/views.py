@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import *
 from django.core.paginator import (
     Paginator,
@@ -13,39 +13,39 @@ from django.conf import settings
 
 # Create your views here.
 def index(request):
-    
-    form=ContactForm(request.POST)
-    if form.is_valid():
-        instance=form.save(commit=False)
-        instance.save()
-    
-    competences=Competences.objects.order_by('-updated')
-    services=Service.objects.all()
-    categories=Categorie.objects.all()
-    object_list=Portfolio.objects.all()
 
-    paginator=Paginator(object_list,6)
-    page=request.GET.get('page')
-    try:
-        portfolios=paginator.page(page)
-    except PageNotAnInteger:
-        portfolios=paginator.page(1)
-    except EmptyPage:
-        portfolios=paginator.page(paginator.num_pages)
-    
+    form=ContactForm(request.POST)
+
+    info= Info.objects.order_by('-updated')[:1]
+    competences = Competences.objects.order_by('-updated')
+    services = Service.objects.all()
+    portfolios = Portfolio.objects.filter(status=True)[:8]
+    educations = Education.objects.order_by('-updated')
+    experiences = Experience.objects.order_by('-updated')
+    stages = Stage.objects.order_by('-updated')
+    formations = FormationAttestee.objects.order_by('-updated')
+    competencesuplementaires = CompetenceSuplementaire.objects.order_by('-updated')
+    temoignages = Temoignage.objects.filter(status=True)
+
     context={
             'portfolios':portfolios,
-            'page':page,
+            'temoignages':temoignages,
             'services':services,
             'competences':competences,
-            'categories':categories,
+            'competencesuplementaires':competencesuplementaires,
+            'infos':info,
+            'educations':educations,
+            'experiences':experiences,
+            'stages':stages,
+            'formations':formations,
             'form':form,
             }
+
     return render(request,'pages/index.html',context)
 
-def detail_projet(request,slug:str):
+def detail_projet(request,pk:int):
     try:
-        portfolio=Portfolio.objects.get(slug=slug)
+        portfolio=Portfolio.objects.get(pk=pk)
         context={
             'portfolio':portfolio,
         }
@@ -53,12 +53,9 @@ def detail_projet(request,slug:str):
         raise("Ce projet n'exist pas")
     return render(request,'pages/detail_portfolio.html',context)
 
-class Contact(CreateView):
-    model=Contact
-    form_class=ContactForm
-    template_name='pages/index.html'
-    success_url='index'
-    
+def cv(request):
+    return render(request,'pages/cv.html')
+
 # gestion des erreurs
 def handler403(request,exception):
     return render(request,'pages/403.html')
@@ -72,38 +69,9 @@ def handler500(request):
 def handler503(request,exception):
     return render(request,'pages/503.html')  
 
-# def contact(request):
-#     form=ContactForm(request.POST)
-#     if form.is_valid():
-#         instance=form.save(commit=False)
-#         if Contact.objects.filter(email=instance.email).exists():
-#             messages.warning(request,
-#             "Désolé! Cet email existe dans la base de données",
-#             "alert alert-danger alert-dismissible")
-#         else:
-#             instance.save()
-#             messages.success(request,
-#             "Nous avons réçu votre message !",
-#             "alert alert-success alert-dismissible")
-#             connection = mail.get_connection()
-#             nom=form.cleaned_data['nom']
-#             email=form.cleaned_data['email']
-#             sujet=form.cleaned_data['sujet']
-#             message=form.cleaned_data['message']
-#             email1 = mail.EmailMessage(
-#             sujet,
-#             message,
-#             settings.DEFAULT_FROM_EMAIL,
-#             [email],
-#             connection=connection,
-#             )
-            
-#             email1.send() 
-            
-#             connection.close()
-            
-#     context={
-#         'form':form,
-#         }
-#     return render(request,"pages/index.html",context)
-#     return render(request,"pages/newletter.html",context)
+def contact(request):
+    form=ContactForm(request.POST)
+    if form.is_valid():
+        instance=form.save(commit=False)
+        instance.save()
+        return redirect('index')     
