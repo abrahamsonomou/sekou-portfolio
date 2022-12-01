@@ -22,7 +22,7 @@ from django.conf.urls import handler400,handler403,handler404,handler500
 urlpatterns = [
     path('admin-django/', admin.site.urls),
     path('',include('app_web.urls')),
-    # path('auth/',include('app_auth.urls')),
+    path('auth/',include('app_auth.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 handler403="app_web.views.handler403"

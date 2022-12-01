@@ -9,30 +9,33 @@
         </div>
 
         <div class="row" data-aos="fade-in">
-
+          {% for info in infos %}
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Agbalepedo <br />
-                  Lome, TOGO<br /><br /></p>
+                <p>{% if info.address %}{{info.address}}{% endif %}</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>contact@sonomou.tech</p>
+                <p>{% if info.email %}{{info.email}}{% endif %}</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+228 70 02 69 94</p>
+                <p>{% if info.phone %}{{info.phone}}{% endif %}</p>
               </div>
-              <img src="{% static 'assets-portfolio/img/profile-img.jpeg' %}" class="img-fluid" alt="">
+              {% if info.photoc %}
+              <img class="w-100 img-fluid mb-4" src="{{info.photoc.url}}" alt="Image">
+              {% else %}
+              <img class="w-100 img-fluid mb-4" src="{% static 'assets-portfolio/img/profile-img.jpeg' %}" class="img-fluid" alt="">
+              {% endif %}
             </div>
-
+            {% endfor %}
           </div>
           <div class="col-lg-7 d-flex align-items-stretch">
             <div class="info">

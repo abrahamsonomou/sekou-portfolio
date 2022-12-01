@@ -5,14 +5,19 @@
     <div class="d-flex flex-column">
       {% for info in infos %}
       <div class="profile">
-        <img src="{% static 'assets-portfolio/img/profile-img.jpeg' %}" alt="" class="img-fluid rounded-circle">
-        <h1 class="text-light"><a href="{% url 'index' %}">Sekou SONOMOU</a></h1>
+        {% if info.photo %}
+        <img src="{{info.photo.url}}" class="img-fluid rounded-circle" alt="Image">
+        {% else %}
+        <img  src="{% static 'assets-portfolio/img/profile-img.jpeg' %}" class="img-fluid rounded-circle" alt="{{info.nom}}">
+        {% endif %}
+
+        <h1 class="text-light"><a href="{% url 'index' %}">{{info.nom}}</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="{{info.twitter}}" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-          <a href="{{info.facebook}}" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-          <a href="{{info.instagram}}" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
-          <a href="{{info.youtube}}" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
-          <a href="{{info.linkedin}}" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="{% if info.twitter %}{{info.twitter}}{% else %}#!{% endif %}" {% if info.twitter %}target="_blank" {% endif %} class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="{% if info.facebook %}{{info.facebook}}{% else %}#!{% endif %}" {% if info.facebook %}target="_blank" {% endif %} class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="{% if info.instagram %}{{info.instagram}}{% else %}#!{% endif %}" {% if info.instagram %}target="_blank" {% endif %} class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="{% if info.youtube %}{{info.youtube}}{% else %}#!{% endif %}" {% if info.youtube %}target="_blank" {% endif %} class="youtube"><i class="bx bxl-youtube"></i></a>
+          <a href="{% if info.linkedin %}{{info.linkedin}}{% else %}#!{% endif %}" {% if info.linkedin %}target="_blank" {% endif %} class="linkedin"><i class="bx bxl-linkedin"></i></a>
         </div>
         {% endfor %}
       </div>

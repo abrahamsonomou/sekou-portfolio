@@ -25,18 +25,18 @@
           <div class="row">
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Naissance:</strong> <span>{{info.naissance}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Site web:</strong> <span><a href="{{info.site}}" target="_blank" >{{info.site}}</a></span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Telephone:</strong> <span>{{info.phone}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Addresse:</strong> <span>{{info.address}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Naissance:</strong> <span>{% if info.naissance %}{{info.naissance}}{% endif %}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Site web:</strong> <span><a href="{% if info.site %}{{info.site}}{% else %}#!{% endif %}" {% if info.site %}target="_blank"{% endif %} >{% if info.site %}{{info.site}}{% endif %}</a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Telephone:</strong> <span>{% if info.phone %}{{info.phone}}{% endif %}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Addresse:</strong> <span>{% if info.address %}{{info.address}}{% endif %}</span></li>
               </ul>
             </div>
             <div class="col-lg-6">
               <ul>
                 <li><i class="bi bi-chevron-right"></i> <strong>Grade:</strong> <span>{{info.grade}}</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>Année d'expérience:</strong> <span>{{info.experience}}</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href="mailto:{{info.email}}">{{info.email}}</a></span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Fonction:</strong> <span>{{info.disponibilite}}</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href="mailto:{% if info.email %}{{info.email}}{% endif %}">{% if info.email %}{{info.email}}{% endif %}</a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Fonction:</strong> <span>{% if info.disponibilite %}{{info.disponibilite}}{% endif %}</span></li>
               </ul>
             </div>
             <p>Voici mon CV qui resume mon parcours <a href="{% url 'cv' %}" target="_blank" class="btn btn-secondary">Cliquez-ici!</span></a></p>

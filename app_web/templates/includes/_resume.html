@@ -9,13 +9,16 @@
   
           <div class="row">
             <div class="col-lg-6" data-aos="fade-up">
+              {% if infos %}
               <h3 class="resume-title">Resumé</h3>
               <div class="resume-item pb-0">
                 {% for info in infos %}
                 <p>{{info.resume.html|safe}}</p>
                 {% endfor %}
               </div>
-  
+              {% endif %}
+              
+              {% if educations %}
               <h3 class="resume-title">Education</h3>
               {% for education in educations %}
               <div class="resume-item">
@@ -25,7 +28,9 @@
                 <p>{{education.description}}</p>
               </div>
               {% endfor %}
-  
+              {% endif %}
+            
+              {% if competencesuplementaires %}
               <h3 class="resume-title">Compétences</h3>
               <div class="resume-item">
                 <ul>
@@ -34,19 +39,11 @@
                   {% endfor %}
                 </ul>
               </div>
-  
-                          
-              <h3 class="resume-title">Stages</h3>
-              {% for stage in stages %}
-              <div class="resume-item">
-                <h4>{{stage.titre|upper}}</h4>
-                <h5> {{stage.periode}}</h5>
-                <p><em><a href="{% if stage.site %}{{stage.site}}{% else %}#!{% endif %}" {% if stage.site %}target="_blank" {% endif %}>{{stage.entreprise}}</a></em></p>
-                <ul>
-                </ul>
-              </div>
-              {% endfor %}
-              
+              {% endif %}
+
+
+
+              {% if formations %}
               <h3 class="resume-title">Formations attestée</h3>
               {% for formation in formations %}
               <div class="resume-item">
@@ -58,7 +55,10 @@
                 </ul>
               </div>
               {% endfor %}
+              {% endif %}
             </div>
+
+            {% if experiences %}
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
               <h3 class="resume-title">Expériences professionnelles</h3>
               {% for experience in experiences %}
@@ -69,10 +69,24 @@
                 <p>{{experience.description.html|safe}}</p>
               </div>
               {% endfor %}
+              {% endif %}
+
+              {% if stages %}
+              <h3 class="resume-title">Stages</h3>
+              {% for stage in stages %}
+              <div class="resume-item">
+                <h4>{{stage.titre|upper}}</h4>
+                <h5> {{stage.periode}}</h5>
+                <p><em><a href="{% if stage.site %}{{stage.site}}{% else %}#!{% endif %}" {% if stage.site %}target="_blank" {% endif %}>{{stage.entreprise}}</a></em></p>
+                <ul>
+                </ul>
+              </div>
+              {% endfor %}
+              {% endif %}
             </div>
           </div>
   
-  
+        
         </div>
       </section><!-- End Resume Section -->
   

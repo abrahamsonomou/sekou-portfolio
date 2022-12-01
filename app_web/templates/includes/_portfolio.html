@@ -13,6 +13,7 @@
           {% endfor %}
         </div>
 
+        {% if portfolios %}
         <div class="row" data-aos="fade-up">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
@@ -23,7 +24,8 @@
             </ul>
           </div>
         </div>
-
+        {% endif %}
+        
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
           {% for portfolio in portfolios %}
           <div class="col-lg-4 col-md-6 portfolio-item {{portfolio.categorie}}">
@@ -34,11 +36,11 @@
               <img class="img-fluid" src="{% static 'assets-portfolio/img/img-5.jpg'%}" alt="">
               {% endif %}
               <div class="portfolio-links">
-                <a href="{{portfolio.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                <a href="{{portfolio.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{portfolio.titre}}"><i class="bx bx-plus"></i></a>
                 {% if portfolio.url %}
-                <a href="{{portfolio.url}}" target="_blank" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="{% if portfolio.url %}{{portfolio.url}}{% else %}#!{% endif %}" {% if portfolio.url %} target="_blank" {% endif %} title="More Details"><i class="bx bx-link"></i></a>
                 {% else %}
-                <a href="{{portfolio.lien}}" target="_blank" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="{% if portfolio.lien %}{{portfolio.lien}}{% else %}#!{% endif %}" {% if portfolio.lien %} target="_blank" {% endif %} title="More Details"><i class="bx bx-link"></i></a>
                 {% endif %}
               </div>
             </div>
